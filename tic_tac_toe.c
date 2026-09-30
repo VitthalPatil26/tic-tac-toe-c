@@ -1,8 +1,13 @@
 #include <stdio.h>
 
+int player1_score = 0;
+int player2_score = 0;
+int draw_count = 0;
+
 /* Function declarations */
 int check_winner(char board[]);
 void display_board(char board[]);
+void display_scoreboard(char player1[], char player2[], int player1_score, int player2_score, int draw_count);
 
 int main(){
 	
@@ -226,10 +231,13 @@ int main(){
 					if(turn == 1)
 					{
 						printf("Congrats %s!. You won 🎉\n\n", player1);
-
+                                                
+						player1_score++;
 					}
 					else{
 						printf("Congrats %s!. You won 🎉\n\n", player2);
+
+						player2_score++;
 
 					}
 
@@ -246,6 +254,9 @@ int main(){
 
 				if(moves == 9){
 					printf("\nGame draw\n\n");
+
+					draw_count++;
+
 					break;
 				}
 
@@ -261,6 +272,8 @@ int main(){
 				else
 					turn = 1;
 			}/* End of while(moves < 9) */
+
+			display_scoreboard(player1, player2, player1_score, player2_score, draw_count);
 
 			/* -------------------------------------------------
                		   Ask whether players want another game
@@ -380,5 +393,20 @@ void display_board(char board[])
         printf("| %c | %c | %c |\n",board[6], board[7], board[8]);
 
 	printf("|---|---|---|\n");
+
+}
+
+void display_scoreboard(char player1[], char player2[], int player1_score, int player2_score, int draw_count){
+
+	printf("\n");
+	printf("====================================\n");
+	printf("            SCOREBOARD\n");
+	printf("====================================\n");
+	
+	printf("%-15s : %d\n", player1, player1_score);
+	printf("%-15s : %d\n", player2, player2_score);
+	printf("%-15s : %d\n", "Draws", draw_count);
+
+	printf("====================================\n");
 
 }
