@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int player1_score = 0;
 int player2_score = 0;
@@ -31,16 +32,16 @@ int main(){
 	int moves = 0;
 
 	/* Initialize the board with positions 1 to 9 */
-
-	board[0] = '1';
-	board[1] = '2';
-	board[2] = '3';
-	board[3] = '4';
-	board[4] = '5';
-	board[5] = '6';
-	board[6] = '7';
-	board[7] = '8';
-	board[8] = '9';
+	
+	board[0] = ' ';
+	board[1] = ' ';
+	board[2] = ' ';
+	board[3] = ' ';
+	board[4] = ' ';
+	board[5] = ' ';
+	board[6] = ' ';
+	board[7] = ' ';
+	board[8] = ' ';
 
 	/* --------------------------------------------
 	   Welcome screen
@@ -48,10 +49,29 @@ int main(){
 
 	printf("\n");
 	printf("==============================\n");
-	printf("\n");
+	printf("         TIC_TAC_TOE\n");
 	printf("==============================\n");
-	printf("\n");
-	printf("            Loading...\n");
+
+	for(int i = 0; i < 3; i++){
+
+		for(int j = 1; j <= 3; j++){
+
+			printf("\r\033[KLoading");
+
+			for(int k = 0; k < j; k++){
+
+				printf(" .");
+			}
+			fflush(stdout);
+			sleep(1);
+		}
+		
+		if(i < 2){
+			printf("\r\033[KLoading");
+			fflush(stdout);
+			sleep(1);
+		}
+	}
 	printf("\n");
 
 	/* --------------------------------------------
@@ -104,15 +124,15 @@ int main(){
 
 			 /* Reset the board */
 
-			 board[0] = '1';
-        		 board[1] = '2';
-        		 board[2] = '3';
-        		 board[3] = '4';
-        		 board[4] = '5';
-        		 board[5] = '6';
-        		 board[6] = '7';
-        		 board[7] = '8';
-        		 board[8] = '9';
+			 board[0] = ' ';
+        		 board[1] = ' ';
+        		 board[2] = ' ';
+        		 board[3] = ' ';
+        		 board[4] = ' ';
+        		 board[5] = ' ';
+        		 board[6] = ' ';
+        		 board[7] = ' ';
+        		 board[8] = ' ';
 
 		         /* Display the instruction */
 
@@ -328,15 +348,15 @@ int check_winner(char board[])
 
     	/* Row 1: 0 1 2 */
 	
-	if(board[0] == board[1] && board[1] == board[2])
+	if(board[0] != ' ' && board[0] == board[1] && board[1] == board[2])
 		return 1;
 
 	/* Row 2: 3 4 5 */
-	if(board[3] == board[4] && board[4] == board[5])
+	if(board[3] != ' ' && board[3] == board[4] && board[4] == board[5])
                 return 1;
 
 	/* Row 3: 6 7 8 */
-	if(board[6] == board[7] && board[7] == board[8])
+	if(board[6] != ' ' && board[6] == board[7] && board[7] == board[8])
                 return 1;
 
 	/* -------------------------
@@ -345,15 +365,15 @@ int check_winner(char board[])
 
     	/* Column 1: 0 3 6 */
 
-	if(board[0] == board[3] && board[3] == board[6])
+	if(board[0] != ' ' && board[0] == board[3] && board[3] == board[6])
                 return 1;
 
 	/* Column 2: 1 4 7 */
-	if(board[1] == board[4] && board[4] == board[7])
+	if(board[1] != ' ' && board[1] == board[4] && board[4] == board[7])
                 return 1;
 
 	/* Column 3: 2 5 8 */
-	if(board[2] == board[5] && board[5] == board[8])
+	if(board[2] != ' ' && board[2] == board[5] && board[5] == board[8])
                 return 1;
 
 	 /* -------------------------
@@ -362,11 +382,11 @@ int check_winner(char board[])
 
         /* Diagonal 1: 0 4 8 */
 
-	if(board[0] == board[4] && board[4] == board[8])
+	if(board[0] != ' ' && board[0] == board[4] && board[4] == board[8])
                 return 1;
 
 	/* Diagonal 2: 2 4 6 */
-	if(board[2] == board[4] && board[4] == board[6])
+	if(board[2] != ' ' && board[2] == board[4] && board[4] == board[6])
                 return 1;
 
 	/* No winning combination found */
