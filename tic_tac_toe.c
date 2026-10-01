@@ -160,8 +160,13 @@ int main(){
        					do
 					{
 						printf("\nEnter %s position[X] : ", player1);						
-						scanf("%d",&position);
-						
+						if(scanf(" %d",&position) != 1){
+
+         					       printf("Invalid input!. Enter a number 1 to 9\n");
+
+                				       while(getchar() != '\n');
+                			      	       continue;
+						}
 		
 						/* Check whether position is between 1 and 9 */						
 						if(position < 1 || position > 9){
@@ -203,7 +208,13 @@ int main(){
 					do
                 			{
                         		printf("\nEnter %s position[O] : ", player2);
-                        		scanf("%d",&position);
+                        		 if(scanf(" %d",&position) != 1){
+
+                                                 printf("Invalid input!. Enter a number 1 to 9\n");
+
+                                                 while(getchar() != '\n');
+                                                 continue;
+                                         }
 
 					/* Check whether position is between 1 and 9 */
                         		if(position < 1 || position > 9){
